@@ -1,0 +1,30 @@
+/* Hilangkan scroll vertical jika tidak dibutuhkan */
+body, html {
+  overflow-x: hidden; /* pastikan tidak ada scroll horizontal */
+  overflow-y: auto;   /* scroll vertikal hanya jika diperlukan */
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+
+@keyframes blink {
+  50% { border-color: transparent; }
+}
+.typing-animation {
+  overflow: hidden;
+  white-space: nowrap;
+  border-right: 3px solid #3b82f6;
+  width: 0;
+  animation: typing 3s steps(8, end) 1s infinite alternate, blink 0.75s step-end infinite;
+}
+
+@keyframes typing {
+  0% { width: 0; }
+  50% { width: 8ch; }
+  100% { width: 0; }
+}
+
