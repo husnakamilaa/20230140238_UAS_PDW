@@ -16,8 +16,8 @@
         <input type="password" name="password" placeholder="Password" class="w-full border p-2 rounded" required>
         <select name="role" class="w-full border p-2 rounded" required>
             <option value="">Pilih Role</option>
-            <option value="admin">Admin</option>
-            <option value="anggota">Anggota</option>
+            <option value="asisten">Asisten</option>
+            <option value="mahasiswa">Mahasiswa</option>
         </select>
         <div class="flex gap-2">
             <button type="submit" name="simpan" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded">Simpan</button>
@@ -34,7 +34,7 @@
 
         $insert = mysqli_query($conn, "INSERT INTO users (nama, email, password, role, created_at) VALUES ('$nama', '$email', '$password', '$role', NOW())");
         if ($insert) {
-            echo "<p class='text-green-600 mt-4'>Berhasil disimpan. <a href='anggota.php' class='underline'>Lihat daftar</a></p>";
+            echo "<p class='text-green-600 mt-4'>Berhasil disimpan.</p>";
         } else {
             echo "<p class='text-red-600 mt-4'>Gagal: " . mysqli_error($conn) . "</p>";
         }

@@ -20,8 +20,8 @@ $anggota = mysqli_fetch_assoc($data);
         <input type="email" name="email" value="<?= $anggota['email'] ?>" placeholder="Email" class="w-full border p-2 rounded" required>
         <input type="password" name="password" placeholder="Kosongkan jika tidak ingin ubah password" class="w-full border p-2 rounded">
         <select name="role" class="w-full border p-2 rounded" required>
-            <option value="admin" <?= $anggota['role'] == 'admin' ? 'selected' : '' ?>>Admin</option>
-            <option value="anggota" <?= $anggota['role'] == 'anggota' ? 'selected' : '' ?>>Anggota</option>
+            <option value="asisten" <?= $anggota['role'] == 'asisten' ? 'selected' : '' ?>>Asisten</option>
+            <option value="mahasiswa" <?= $anggota['role'] == 'mahasiswa' ? 'selected' : '' ?>>Mahasiswa</option>
         </select>
         <div class="flex gap-2">
             <button type="submit" name="update" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded">Update</button>
@@ -45,7 +45,7 @@ $anggota = mysqli_fetch_assoc($data);
 
         $update = mysqli_query($conn, $query);
         if ($update) {
-            echo "<p class='text-green-600 mt-4'>Berhasil diupdate. <a href='anggota.php' class='underline'>Lihat daftar</a></p>";
+            echo "<p class='text-green-600 mt-4'>Berhasil diupdate.</p>";
         } else {
             echo "<p class='text-red-600 mt-4'>Gagal: " . mysqli_error($conn) . "</p>";
         }
