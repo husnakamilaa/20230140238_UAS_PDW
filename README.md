@@ -11,7 +11,7 @@
 ![image](https://github.com/user-attachments/assets/698744d0-cd14-4984-b80f-f8a30ac90e81)
 ![image](https://github.com/user-attachments/assets/c89c2827-ffbe-4671-aa52-e3767214c97a)
 ### Laporan Masuk
-![image](https://github.com/user-attachments/assets/a1ba7909-f80c-4008-8275-d2dd9fbc2a9f)
+![image](https://github.com/user-attachments/assets/76a2e6e9-d0dc-4521-9ad6-36fbe6320bb5)
 ### Manajemen Praktikum
 ![image](https://github.com/user-attachments/assets/baa575cc-b9ea-44d6-be1a-8dae24f4acaa)
 ![image](https://github.com/user-attachments/assets/0ae20a39-625b-44ef-b56a-f6acd39f211d)
