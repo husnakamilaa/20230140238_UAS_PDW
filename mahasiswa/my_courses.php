@@ -54,7 +54,7 @@ $result = mysqli_query($conn, $sql);
                             <?= htmlspecialchars($row['nama_praktikum']) ?>
                         </h2>
                         <p class="text-sm text-gray-600 mb-4">Semester: <?= htmlspecialchars($row['semester']) ?></p>
-                        <a href="detail_praktikum.php?id_praktikum=<?= $row['id_praktikum'] ?>" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded">
+                        <a href="detailPraktikum/detail_praktikum.php?id_praktikum=<?= $row['id_praktikum']  ?>" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded">
                             Lihat Detail
                         </a>
                     </div>
