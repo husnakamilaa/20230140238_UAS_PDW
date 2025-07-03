@@ -1,0 +1,71 @@
+<?php
+include '../../config.php';
+
+$id = $_GET['id'] ?? null;
+if (!$id) {
+    echo "ID tidak valid.";
+    exit;
+}
+
+// Ambil data laporan
+$query = "SELECT laporan.*, users.nama AS nama_mahasiswa, modul.judul AS judul_modul 
+          FROM laporan 
+          JOIN users ON laporan.id_users = users.id 
+          JOIN modul ON laporan.id_modul = modul.id 
+          WHERE laporan.id = '$id'";
+$result = mysqli_query($conn, $query);
+$laporan = mysqli_fetch_assoc($result);
+
+if (!$laporan) {
+    echo "Laporan tidak ditemukan.";
+    exit;
+}
+
+// Jika form penilaian dikirim
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['nilai'])) {
+    $nilai = intval($_POST['nilai']);
+    $update = mysqli_query($conn, "UPDATE laporan SET nilai = '$nilai', status = 'Sudah Dinilai' WHERE id = '$id'");
+    if ($update) {
+        header("Location: laporan.php?msg=nilai_diberikan");
+        exit;
+    } else {
+        echo "Gagal menyimpan nilai.";
+    }
+}
+?>
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>Detail Laporan</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 p-6">
+<div class="max-w-3xl mx-auto bg-white p-6 rounded shadow">
+    <h2 class="text-2xl font-semibold mb-4">Detail Laporan</h2>
+
+    <p><strong>Nama Mahasiswa:</strong> <?= htmlspecialchars($laporan['nama_mahasiswa']) ?></p>
+    <p><strong>Modul:</strong> <?= htmlspecialchars($laporan['judul_modul']) ?></p>
+    <p><strong>Tanggal Upload:</strong> <?= date("d M Y, H:i", strtotime($laporan['tanggal_upload'])) ?></p>
+    <p><strong>Status:</strong> <?= $laporan['status'] ?></p>
+
+    <div class="my-4">
+        <a href="../../mahasiswa/laporan/file/<?= $laporan['file_laporan'] ?>" target="_blank" class="text-blue-600 hover:underline">Lihat File Laporan</a>
+    </div>
+    <?php if ($laporan['status'] === 'Belum Dinilai'): ?>
+        <form method="POST" class="mt-4">
+            <label for="nilai" class="block mb-2 font-medium">Beri Nilai (0 - 100):</label>
+            <input type="number" name="nilai" id="nilai" class="border p-2 rounded w-full mb-4" min="0" max="100" required>
+            <button type="submit" class="bg-green-600 text-white px-4 py-2 rounded">Simpan Nilai</button>
+        </form>
+    <?php else: ?>
+        <p class="mt-4"><strong>Nilai:</strong> <?= $laporan['nilai'] ?></p>
+    <?php endif; ?>
+
+    <div class="mt-6">
+        <a href="laporan.php" class="text-blue-600 hover:underline">← Kembali ke Daftar Laporan</a>
+    </div>
+</div>
+</body>
+</html>
